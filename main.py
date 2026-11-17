@@ -1,9 +1,12 @@
 import base64
-import io
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from rapid_latex_ocr import LatexOCR
+
+try:
+    from rapid_latex_ocr import LaTeXOCR
+except ImportError:
+    from rapid_latex_ocr.main import LaTeXOCR
 
 app = FastAPI(title="MeyzNote Math OCR API")
 
@@ -14,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = LatexOCR()
+model = LaTeXOCR()
 
 class MathBase64Request(BaseModel):
     image_base64: str

@@ -4,3 +4,4 @@ pillow
 pydantic
 rapid-latex-ocr
 onnxruntime
+requests
